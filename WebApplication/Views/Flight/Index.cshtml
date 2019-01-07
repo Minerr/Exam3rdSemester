@@ -1,0 +1,61 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<Flight>
+
+@{
+	ViewData["Title"] = "Oversigt af flyafgange";
+
+	string fromLocation = "";
+	string toLocation = "";
+}
+
+@section Scripts {
+
+}
+
+<div class="container">
+	<h2>Oversigt over flyafgange og ankomster</h2>
+
+	<form asp-action="Index" asp-controller="Flight" method="get">
+		<div class="d-flex">
+			<div class="form-group d-flex">
+				<label>Afgangslufthavn:</label>
+				<input class="form-control" name="from" type="text" />
+			</div>
+			<div class="form-group d-flex">
+				<label>Ankomstlufthavn:</label>
+				<input class="form-control" name="to" type="text" />
+			</div>
+			<button class="btn btn-primary h-50" type="submit">Søg</button>
+		</div>
+	</form>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Flytype</th>
+				<th>Lokation</th>
+				<th>Destination</th>
+				<th>Afgangstid</th>
+				<th>Ankomsttid</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+
+			@foreach(Flight flight in Model)
+			{
+				<tr>
+					<td>@flight.AircraftType</td>
+					<td>@flight.FromLocation</td>
+					<td>@flight.ToLocation</td>
+					<td>@flight.DepartureTime</td>
+					<td>@flight.ArrivalTime</td>
+					@*<td><button class="btn btn-link" href="@Url.Action("ProvideBid", "Home", auctionItem.ItemNumber)">Provide bid</button></td>*@
+					<td><a class="btn btn-link" asp-controller="Flight" asp-action="EditDeparture" asp-route-id="@flight.FlightId">Rediger flyafgang</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+</div>

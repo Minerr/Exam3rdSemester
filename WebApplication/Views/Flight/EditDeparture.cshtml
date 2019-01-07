@@ -1,0 +1,54 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Flight
+
+@{
+	ViewData["Title"] = "Rediger flyafgang";
+}
+
+<div class="container">
+	<h2>Rediger flyafgang</h2>
+	<h3>Flyafgang med id: @Model.FlightId</h3>
+	<h4>Fra @Model.FromLocation til @Model.ToLocation</h4>
+	<br />
+	<br />
+	<form asp-controller="Flight" asp-action="EditDeparture" method="post">
+		<div class="d-flex">
+			<div class="form-group col-4">
+				<label asp-for="FlightId"></label>
+				<input class="form-control" asp-for="FlightId" disabled />
+				<input class="form-control" asp-for="FlightId" type="hidden" value="@Model.FlightId" />
+			</div>
+			<div class="form-group col-4">
+				<label asp-for="AircraftType"></label>
+				<input class="form-control" asp-for="AircraftType" disabled />
+				<input class="form-control" asp-for="AircraftType" type="hidden" value="@Model.AircraftType"/>
+			</div>
+		</div>
+		<div class="d-flex">
+			<div class="form-group col-4">
+				<label asp-for="FromLocation"></label>
+				<input class="form-control" asp-for="FromLocation" disabled />
+				<input class="form-control" asp-for="FromLocation" type="hidden" value="@Model.FromLocation" />
+			</div>
+			<div class="form-group col-4">
+				<label asp-for="ToLocation"></label>
+				<input class="form-control" asp-for="ToLocation" disabled />
+				<input class="form-control" asp-for="ToLocation" type="hidden" value="@Model.ToLocation" />
+			</div>
+		</div>
+		<div class="d-flex">
+			<div class="form-group col-4">
+				<label asp-for="DepartureTime"></label>
+				<input class="form-control" asp-for="DepartureTime" value="@Model.DepartureTime" type="datetime" />
+			</div>
+			<div class="form-group col-4">
+				<label asp-for="ArrivalTime"></label>
+				<input class="form-control" asp-for="ArrivalTime" value="@Model.ArrivalTime" type="datetime" />
+			</div>
+		</div>
+		<button class="btn btn-primary" type="submit">Gem</button>
+	</form>
+</div>
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPI.Controllers.FlightsController.GetFlights">
+            <summary>
+            A method that returns a list of all flights.
+            </summary>
+            <returns>Returns a list with all flight from the database, it will be empty if there is no flights in the database.</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.FlightsController.GetFlight(System.Int32)">
+            <summary>
+            A method that returns a specific flight using the specified id.
+            </summary>
+            <param name="id">The flight id to find.</param>
+            <returns>
+            Returns StatusCode NotFound, if the flight cannot be found with the specified id. 
+            Returns the flight object if the database contains a flight with the specified id.
+            </returns>
+        </member>
+        <member name="M:WebAPI.Controllers.FlightsController.GetFlightsFromAndTo(System.String,System.String)">
+            <summary>
+            A method that returns a list of flights containing the specified fromLocation and toLocation.
+            </summary>
+            <param name="from">The flights departure location.</param>
+            <param name="to">The flights arrival location.</param>
+            <returns>Returns a list of flights, it will be empty if there is no flights containing the specified fromLocation or toLocation in the database.</returns>
+        </member>
+        <member name="M:WebAPI.Controllers.FlightsController.PutFlight(System.Int32,WebApplication.Models.Flight)">
+            <summary>
+            A method to change a flights information using the specified id. It overwrites the data with the specified flight object.
+            </summary>
+            <param name="id">The id of the flight to change</param>
+            <param name="flight">A flight object containing the updated data.</param>
+            <returns>
+            Returns StatusCode 400 Bad Request, if the specified id and the flight object id is not the same. 
+            Returns StatusCode 404 Not Found, if the specified id does not exist in the database. 
+            Returns StatusCode 200 Ok, if successful.
+            </returns>
+        </member>
+        <member name="M:WebAPI.Controllers.FlightsController.PostFlight(WebApplication.Models.Flight)">
+            <summary>
+            Stores a flight in the database using the specified flight object.
+            </summary>
+            <param name="flight">
+            The flight object to store in the database. 
+            The value of the id in the flight object does not matter. 
+            The database auto-generates it.
+            </param>
+            <returns>
+            Returns StatusCode 201 Created if successful.
+            Returns 500 Internal Server Error if not.
+            </returns>
+        </member>
+        <member name="M:WebAPI.Controllers.FlightsController.DeleteFlight(System.Int32)">
+            <summary>
+            Removes a flight from the database with the specified id.
+            </summary>
+            <param name="id">The id of the flight to remove.</param>
+            <returns>
+            Returns StatusCode 404 Not Found, if the specified id does not exist in the database.
+            Returns the flight object if successful.
+            </returns>
+        </member>
+    </members>
+</doc>
